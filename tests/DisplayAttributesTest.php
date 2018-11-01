@@ -31,21 +31,21 @@ class DisplayAttributesTest extends TestCase
 
     public function test_displays_monetary_attributes_correctly()
     {
-        $model = Model::create(['price' => 599]);
+        $model = Model::create(['price' => 5.99]);
 
         self::assertEquals('5.99', $model->price);
     }
 
     public function test_displays_monetary_attributes_correctly_in_array()
     {
-        $model = Model::create(['price' => 599]);
+        $model = Model::create(['price' => 5.99]);
 
         self::assertEquals('5.99', $model->toArray()['price']);
     }
 
     public function test_stores_display_monetary_attribute_in_base_attribute()
     {
-        $model = Model::create(['price' => 599]);
+        $model = Model::create(['price' => 5.99]);
 
         self::assertEquals(599, $model->getAttributes()['price']);
     }

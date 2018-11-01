@@ -95,7 +95,7 @@ abstract class Model extends BaseModel
      */
     protected function isMoneyAttribute($key): bool
     {
-        return in_array($key, $this->moneyAttributes) && array_key_exists($key, $this->attributes);
+        return in_array($key, $this->moneyAttributes);
     }
 
     /**
