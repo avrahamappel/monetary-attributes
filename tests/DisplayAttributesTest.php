@@ -49,4 +49,11 @@ class DisplayAttributesTest extends TestCase
 
         self::assertEquals(599, $model->getAttributes()['price']);
     }
+
+    public function test_returns_null_if_value_is_not_set()
+    {
+        $model = new Model;
+
+        self::assertNull($model->price);
+    }
 }

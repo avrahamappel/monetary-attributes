@@ -55,9 +55,11 @@ abstract class Model extends BaseModel
      */
     protected function mutateAttribute($key, $value)
     {
-        return $this->isMoneyAttribute($key)
-            ? $this->mutateForDisplay($this->attributes[$key])
-            : parent::mutateAttribute($key, $value);
+        if ($this->isMoneyAttribute($key)) {
+            return $value ? $this->mutateForDisplay($value) : $value;
+        }
+
+        return parent::mutateAttribute($key, $value);
     }
 
     /**
