@@ -109,5 +109,26 @@ abstract class Model extends BaseModel
     {
         return array_merge(parent::getMutatedAttributes(), $this->moneyAttributes);
     }
+    
+    /**
+     * Set the mutated attributes at runtime.
+     *
+     * @param array $moneyAttributes
+     * @return Order
+     */
+    public function setMoneyAttributes(array $moneyAttributes): Order
+    {
+        $this->moneyAttributes = $moneyAttributes;
+
+        return $this;
+    }
+    
+    /**
+     * @return array
+     */
+    public function getMoneyAttributes(): array
+    {
+        return $this->moneyAttributes;
+    }
 }
 
