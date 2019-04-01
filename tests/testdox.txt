@@ -1,0 +1,6 @@
+DisplayAttributes
+ [x] Displays monetary attributes correctly
+ [x] Displays monetary attributes correctly in array
+ [x] Stores display monetary attribute in base attribute
+ [x] Returns null if value is not set
+
