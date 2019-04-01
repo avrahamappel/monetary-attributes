@@ -114,9 +114,9 @@ abstract class Model extends BaseModel
      * Set the mutated attributes at runtime.
      *
      * @param array $moneyAttributes
-     * @return Order
+     * @return \Illuminate\Database\Eloquent\Model
      */
-    public function setMoneyAttributes(array $moneyAttributes): Order
+    public function setMoneyAttributes(array $moneyAttributes): Model
     {
         $this->moneyAttributes = $moneyAttributes;
 
