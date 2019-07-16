@@ -43,7 +43,7 @@ abstract class Model extends BaseModel
      */
     public function hasGetMutator($key)
     {
-        return $this->isMoneyAttribute($key) ?: parent::hasGetMutator($key);
+        return parent::hasGetMutator($key) || $this->isMoneyAttribute($key);
     }
 
     /**
@@ -55,11 +55,15 @@ abstract class Model extends BaseModel
      */
     protected function mutateAttribute($key, $value)
     {
+        if (parent::hasGetMutator($key)) {
+            return parent::mutateAttribute($key, $value);
+        }
+
         if ($this->isMoneyAttribute($key)) {
             return $value ? $this->mutateForDisplay($value) : $value;
         }
 
-        return parent::mutateAttribute($key, $value);
+        return $value;
     }
 
     /**
@@ -70,7 +74,7 @@ abstract class Model extends BaseModel
      */
     public function hasSetMutator($key)
     {
-        return $this->isMoneyAttribute($key) ? true : parent::hasSetMutator($key);
+        return parent::hasSetMutator($key) || $this->isMoneyAttribute($key);
     }
 
     /**
@@ -82,6 +86,10 @@ abstract class Model extends BaseModel
      */
     protected function setMutatedAttributeValue($key, $value)
     {
+        if (parent::hasSetMutator($key)) {
+            return parent::setMutatedAttributeValue($key, $value);
+        }
+
         if ($this->isMoneyAttribute($key)) {
             $value = $this->mutateForStorage($value);
         }
