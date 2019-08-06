@@ -39,3 +39,7 @@ class Product extends Model
 }
 ...
 ```
+
+## To-Do
+
+- [ ] Switch to trait instead of using inheritance
