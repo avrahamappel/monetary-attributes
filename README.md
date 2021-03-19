@@ -1,4 +1,47 @@
-**Note: This repository is abandoned in favor of [Laravel Custom Casts](https://github.com/vkovic/laravel-custom-casts#laravel-custom-casts).**
+**Note: This repository is abandoned in favor of [Eloquent Custom Casts](https://laravel.com/docs/7.x/eloquent-mutators#custom-casts), which were introduced in Laravel 7.**
+
+You can replicate the functionality of this package using Eloquent Custom Casts with the following Cast class:
+
+```php
+<?php
+
+namespace App\Casts;
+
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+
+class Currency implements CastsAttributes
+{
+    /**
+     * Cast the given value into currency format.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param  string  $key
+     * @param  mixed  $value
+     * @param  array  $attributes
+     * @return string
+     */
+    public function get($model, string $key, $value, array $attributes)
+    {
+        return number_format((int) $value / 100, 2, '.', '');
+    }
+
+    /**
+     * Cast the given value back into an integer for storage.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param  string  $key
+     * @param  mixed  $value
+     * @param  array  $attributes
+     * @return int
+     */
+    public function set($model, string $key, $value, array $attributes)
+    {
+        return (int) round((float) $value * 100);
+    }
+}
+
+```
+
 
 # Monetary Attributes
 
